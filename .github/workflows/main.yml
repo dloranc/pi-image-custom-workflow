@@ -33,7 +33,7 @@ jobs:
           sudo mount -t ext4 -o loop,offset=272629760 raspbian-lite.img mount-point
 
           # Copy your custom code to the image (replace src and dest paths)
-          cp -r ./* mount-point/
+          sudo cp -r ./* mount-point/
 
           # Unmount the image
           sudo umount mount-point
