@@ -21,7 +21,7 @@ jobs:
           # Download Raspberry Pi OS Lite image (replace with the actual URL)
           wget --no-verbose https://downloads.raspberrypi.org/raspios_lite_arm64_latest -O raspbian-lite.zip
           ls
-          unzip raspbian-lite.zip
+          tar xzf raspbian-lite.zip
 
           # Mount the image
           mkdir -p mount-point
