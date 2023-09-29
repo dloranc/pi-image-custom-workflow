@@ -1,0 +1,43 @@
+name: Build Raspberry Pi OS Lite Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        run: sudo apt-get install qemu qemu-user-static
+
+      - name: Build Raspberry Pi OS Lite Image
+        run: |
+          # Download Raspberry Pi OS Lite image (replace with the actual URL)
+          wget https://downloads.raspberrypi.org/raspios_lite_arm64_latest -O raspbian-lite.zip
+          unzip raspbian-lite.zip
+
+          # Mount the image
+          mkdir -p mount-point
+          sudo mount -o loop,offset=268435456 raspbian-lite.img mount-point
+
+          # Copy your custom code to the image (replace src and dest paths)
+          cp -r ./* mount-point/
+
+          # Unmount the image
+          sudo umount mount-point
+        shell: bash
+
+      - name: Save Modified Image
+        run: mv raspbian-lite.img modified-raspbian-lite.img
+
+      - name: Upload Image
+        uses: actions/upload-artifact@v3
+        with:
+          name: custom-raspbian-image
+          path: modified-raspbian-lite.img
