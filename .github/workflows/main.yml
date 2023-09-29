@@ -26,6 +26,7 @@ jobs:
           mv raspbian-lite raspbian-lite.img
           # xz -d raspbian-lite.xz -c > raspbian-lite.img
           ls -la
+          fdisk -l raspbian-lite.img
 
           # Mount the image
           mkdir -p mount-point
