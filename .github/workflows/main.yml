@@ -37,6 +37,7 @@ jobs:
 
           cd /tmp/mount-point
           sudo g++ -o hello hello.cpp
+          cd /
 
           # Unmount the image
           sudo umount /tmp/mount-point
