@@ -30,7 +30,7 @@ jobs:
 
           # Mount the image
           mkdir -p mount-point
-          sudo mount -o loop,offset=532480 raspbian-lite.img mount-point
+          sudo mount -t ext4 -o loop,offset=272629760 raspbian-lite.img mount-point
 
           # Copy your custom code to the image (replace src and dest paths)
           cp -r ./* mount-point/
