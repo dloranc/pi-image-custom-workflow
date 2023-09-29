@@ -36,7 +36,7 @@ jobs:
           sudo cp -r ./* /tmp/mount-point/
 
           # Unmount the image
-          sudo umount mount-point
+          sudo umount /tmp/mount-point
         shell: bash
 
       - name: Save Modified Image
