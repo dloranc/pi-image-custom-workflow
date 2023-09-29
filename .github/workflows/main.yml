@@ -15,8 +15,8 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
-        with:
-          platforms: linux/arm, linux/arm64
+        #with:
+          #platforms: linux/arm, linux/arm64
 
       - name: Build Raspberry Pi OS Lite Image
         run: |
