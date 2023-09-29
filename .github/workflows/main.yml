@@ -21,26 +21,26 @@ jobs:
       - name: Build Raspberry Pi OS Lite Image
         run: |
           # Download Raspberry Pi OS Lite image (replace with the actual URL)
-          wget --no-verbose https://downloads.raspberrypi.org/raspios_lite_arm64_latest -O raspbian-lite.xz
-          xz --decompress raspbian-lite.xz
-          mv raspbian-lite raspbian-lite.img
+          wget --no-verbose https://downloads.raspberrypi.org/raspios_lite_arm64_latest -O /tmp/raspbian-lite.xz
+          xz --decompress /tmp/raspbian-lite.xz
+          mv /tmp/raspbian-lite /tmp/raspbian-lite.img
           # xz -d raspbian-lite.xz -c > raspbian-lite.img
           ls -la
-          fdisk -l raspbian-lite.img
+          fdisk -l /tmp/raspbian-lite.img
 
           # Mount the image
-          mkdir -p mount-point
-          sudo mount -t ext4 -o loop,offset=272629760 raspbian-lite.img mount-point
+          mkdir -p /tmp/mount-point
+          sudo mount -t ext4 -o loop,offset=272629760 /tmp/raspbian-lite.img /tmp/mount-point
 
           # Copy your custom code to the image (replace src and dest paths)
-          sudo cp -r ./* mount-point/
+          sudo cp -r ./* /tmp/mount-point/
 
           # Unmount the image
           sudo umount mount-point
         shell: bash
 
       - name: Save Modified Image
-        run: mv raspbian-lite.img modified-raspbian-lite.img
+        run: mv /tmp/raspbian-lite.img ./modified-raspbian-lite.img
 
       - name: Upload Image
         uses: actions/upload-artifact@v3
