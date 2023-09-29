@@ -19,7 +19,8 @@ jobs:
       - name: Build Raspberry Pi OS Lite Image
         run: |
           # Download Raspberry Pi OS Lite image (replace with the actual URL)
-          wget https://downloads.raspberrypi.org/raspios_lite_arm64_latest -O raspbian-lite.zip
+          wget --no-verbose https://downloads.raspberrypi.org/raspios_lite_arm64_latest -O raspbian-lite.zip
+          ls
           unzip raspbian-lite.zip
 
           # Mount the image
