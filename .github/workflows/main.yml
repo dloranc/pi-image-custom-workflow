@@ -16,7 +16,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         #with:
-          #platforms: linux/arm, linux/arm64
+        #platforms: linux/arm, linux/arm64
 
       - name: Build Raspberry Pi OS Lite Image
         run: |
@@ -34,6 +34,9 @@ jobs:
 
           # Copy your custom code to the image (replace src and dest paths)
           sudo cp -r ./* /tmp/mount-point/
+
+          cd /tmp/mount-point
+          sudo g++ -o hello hello.cpp
 
           # Unmount the image
           sudo umount /tmp/mount-point
